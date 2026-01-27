@@ -384,7 +384,7 @@ body {
     padding: 8px 10px;
   }
   .leaflet-control-zoom {
-    transform: scale(0.8);
+    transform: scale(0.5);
     transform-origin: bottom right;
   }
 }
