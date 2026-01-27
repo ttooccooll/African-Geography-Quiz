@@ -234,7 +234,7 @@ function showEndScreen() {
   `;
 
   endScreen.classList.remove("hidden");
-
-  // Automatically pay the earned sats
-  window.payForScore(score);
+  document.getElementById("claimRewardBtn").onclick = () => {
+    window.payForScore(score);
+  };
 }

@@ -1,6 +1,6 @@
 window.signInWithLightningAddress = function () {
   window.lightningInvoice = prompt(
-    "Enter a Lightning invoice (payment request) from the student to receive rewards:"
+    "Enter a Lightning invoice (payment request) from the student to receive rewards:",
   );
   if (!window.lightningInvoice) {
     alert("You need a Lightning invoice to receive rewards!");
@@ -11,22 +11,25 @@ window.signInWithLightningAddress = function () {
 
 window.showQR = function (invoice, sats) {
   const qrContainer = document.getElementById("paymentQR");
-  qrContainer.innerHTML = `<p>Scan this QR code with your Lightning wallet to pay <strong>${sats} sats</strong>:</p>`;
+  qrContainer.innerHTML = `
+    <p>Scan to receive <strong>${sats} sats</strong></p>
+    <canvas id="qrCanvas"></canvas>
+  `;
 
-  if (window.QRCode) {
-    QRCode.toCanvas(invoice, { width: 200 }, (err, canvas) => {
-      if (err) console.error(err);
-      qrContainer.appendChild(canvas);
-    });
-  } else {
-    qrContainer.innerHTML += `<p>${invoice}</p>`;
-  }
+  const canvas = document.getElementById("qrCanvas");
+
+  QRCode.toCanvas(canvas, invoice, { width: 220 }, (err) => {
+    if (err) console.error("QR error:", err);
+  });
 
   qrContainer.classList.remove("hidden");
 };
 
 window.payForScore = async function (sats) {
   const qrContainer = document.getElementById("paymentQR");
+  console.log("Paying sats:", sats);
+  console.log("Invoice:", window.lightningInvoice);
+  console.log("WebLN available:", !!window.webln);
 
   if (!window.lightningInvoice) {
     window.signInWithLightningAddress();
