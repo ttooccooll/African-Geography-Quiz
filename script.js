@@ -82,6 +82,7 @@ const tolerancePerCountry = {
   "Chad": 6,
   "Guinea‑Bissau": 4,
   "Morocco": 5,
+  "Egypt": 4,
   "Mali": 5,
   "Rwanda": 2,
   "Burundi": 2,
