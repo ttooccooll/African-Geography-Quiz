@@ -386,6 +386,7 @@ body {
     transform-origin: bottom right;
   }
   .leaflet-popup-content {
+    width: fit-content;
     font-size: 12px;
     padding: 4px 5px;
   }
