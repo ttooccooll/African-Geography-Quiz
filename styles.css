@@ -354,21 +354,18 @@ body {
 
 @media (max-width: 500px) {
   #info {
-    top: 50%;
     font-size: 18px;
-    padding: 8px 14px;
+    padding: 6px 14px;
   }
 
   #score {
-    top: 75%;
     font-size: 14px;
     padding: 6px 12px;
   }
 
   #message {
-    top: 60%;
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 6px 12px;
   }
 
   .modal-card {
