@@ -1,30 +1,17 @@
 window.signInWithLightningAddress = function () {
-  window.lightningAddress = prompt(
-    "Enter student's Lightning Address (e.g., user@domain.com):"
+  window.lightningInvoice = prompt(
+    "Enter a Lightning invoice (payment request) from the student to receive rewards:"
   );
-  if (!window.lightningAddress) {
-    alert("You need a Lightning Address to receive rewards!");
+  if (!window.lightningInvoice) {
+    alert("You need a Lightning invoice to receive rewards!");
   } else {
-    alert(`Great! Rewards will be paid to ${window.lightningAddress}`);
-  }
-};
-
-window.createInvoice = async function (studentAddress, sats) {
-  try {
-    const response = await fetch(
-      `/api/createInvoice?amount=${sats}&payee=${encodeURIComponent(studentAddress)}`
-    );
-    const data = await response.json();
-    return data.invoice;
-  } catch (err) {
-    console.error("Invoice creation failed:", err);
-    throw new Error("Failed to create invoice");
+    alert("Great! WebLN or QR code will be used to pay this invoice.");
   }
 };
 
 window.showQR = function (invoice, sats) {
   const qrContainer = document.getElementById("paymentQR");
-  qrContainer.innerHTML = `<p>Scan this QR code with your Lightning wallet to pay <strong>${sats} sats</strong> to the student:</p>`;
+  qrContainer.innerHTML = `<p>Scan this QR code with your Lightning wallet to pay <strong>${sats} sats</strong>:</p>`;
 
   if (window.QRCode) {
     QRCode.toCanvas(invoice, { width: 200 }, (err, canvas) => {
@@ -41,19 +28,17 @@ window.showQR = function (invoice, sats) {
 window.payForScore = async function (sats) {
   const qrContainer = document.getElementById("paymentQR");
 
-  if (!window.lightningAddress || sats <= 0) {
-    qrContainer.innerHTML = `<p>No Lightning Address or score is 0. No payment.</p>`;
+  if (!window.lightningInvoice || sats <= 0) {
+    qrContainer.innerHTML = `<p>No Lightning invoice or score is 0. Cannot pay.</p>`;
     qrContainer.classList.remove("hidden");
     return;
   }
 
   try {
-    const invoice = await window.createInvoice(window.lightningAddress, sats);
-
     if (window.webln) {
       try {
         await window.webln.enable();
-        await window.webln.sendPayment(invoice);
+        await window.webln.sendPayment(window.lightningInvoice);
         qrContainer.innerHTML = `<p style="color:green;">✅ Payment of ${sats} sats sent via WebLN!</p>`;
         qrContainer.classList.remove("hidden");
         return;
@@ -65,10 +50,10 @@ window.payForScore = async function (sats) {
       qrContainer.innerHTML = `<p>WebLN not available. Scan QR to pay ${sats} sats:</p>`;
     }
 
-    window.showQR(invoice, sats);
+    window.showQR(window.lightningInvoice, sats);
   } catch (err) {
     console.error(err);
-    qrContainer.innerHTML = `<p>Failed to create invoice. Cannot pay.</p>`;
-    qrContainer.classList.remove("hidden");
+    qrContainer.innerHTML = `<p>Payment failed. Scan QR to pay ${sats} sats:</p>`;
+    window.showQR(window.lightningInvoice, sats);
   }
 };
