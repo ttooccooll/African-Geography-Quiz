@@ -389,12 +389,12 @@ body {
   .leaflet-popup-wrapper {
     width: fit-content;
     font-size: 8px;
-    padding: 0;
+    padding: 5px 0 5px 0;
   }
   .leaflet-popup-content {
     width: fit-content;
     font-size: 8px;
-    padding: 3px 25px 3px 6px;
+    padding: 0px 20px 0px 6px;
     margin: 0;
   }
   #map {
