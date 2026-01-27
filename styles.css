@@ -394,7 +394,7 @@ body {
   .leaflet-popup-content {
     width: fit-content;
     font-size: 8px;
-    padding: 4px 25px 4px 6px;
+    padding: 3px 25px 3px 6px;
     margin: 0;
   }
   #map {
