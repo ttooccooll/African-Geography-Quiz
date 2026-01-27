@@ -52,7 +52,7 @@ var countries = [
   { name: "Namibia", lat: -22.0, lng: 17.1, capital: "Windhoek" },
   { name: "Niger", lat: 17.6, lng: 8.1, capital: "Niamey" },
   { name: "Nigeria", lat: 9.1, lng: 7.5, capital: "Abuja" },
-  { name: "Republic of the Congo (RC)", lat: -0.2, lng: 15.8, capital: "Brazzaville" },
+  { name: "Republic of the Congo", lat: -0.2, lng: 15.8, capital: "Brazzaville" },
   { name: "Rwanda", lat: -1.9, lng: 29.9, capital: "Kigali" },
   { name: "Senegal", lat: 14.5, lng: -14.4, capital: "Dakar" },
   { name: "Sierra Leone", lat: 8.6, lng: -11.8, capital: "Freetown" },
