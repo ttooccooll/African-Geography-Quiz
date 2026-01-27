@@ -86,8 +86,6 @@ const tolerancePerCountry = {
   "Burundi": 2,
 };
 
-const tolerance = tolerancePerCountry[currentCountry.name] || 3.5;
-
 const scoreEl = document.getElementById("score");
 const messageEl = document.getElementById("message");
 const infoEl = document.getElementById("info");
@@ -111,6 +109,7 @@ function pickCountry() {
 
 map.on("click", function (e) {
   totalClicks++;
+  const tolerance = tolerancePerCountry[currentCountry.name] || 3.5;
   const dist = Math.sqrt(
     Math.pow(e.latlng.lat - currentCountry.lat, 2) +
       Math.pow(e.latlng.lng - currentCountry.lng, 2),
