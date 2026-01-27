@@ -5,35 +5,42 @@ window.signInWithLightningAddress = function () {
   if (!window.lightningAddress) {
     alert("You need a Lightning Address to receive rewards!");
   } else {
-    alert(`Welcome! Lightning rewards will go to ${window.lightningAddress}`);
+    alert(`Great! Rewards will be paid to ${window.lightningAddress}`);
   }
 };
 
-window.createInvoice = function (lightningAddress, sats) {
-  return new Promise((resolve) => {
-    const invoice = `lnbc${sats}n1p${Date.now()}pp5qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq`;
-    resolve(invoice);
-  });
+window.createInvoice = async function (studentAddress, sats) {
+  try {
+    const response = await fetch(
+      `/api/createInvoice?amount=${sats}&payee=${encodeURIComponent(studentAddress)}`
+    );
+    const data = await response.json();
+    return data.invoice;
+  } catch (err) {
+    console.error("Invoice creation failed:", err);
+    throw new Error("Failed to create invoice");
+  }
 };
 
 window.showQR = function (invoice, sats) {
   const qrContainer = document.getElementById("paymentQR");
-  qrContainer.innerHTML = `<p>Scan this QR code with your Lightning wallet to pay <strong>${sats} sats</strong>:</p>`;
+  qrContainer.innerHTML = `<p>Scan this QR code with your Lightning wallet to pay <strong>${sats} sats</strong> to the student:</p>`;
 
   if (window.QRCode) {
     QRCode.toCanvas(invoice, { width: 200 }, (err, canvas) => {
       if (err) console.error(err);
       qrContainer.appendChild(canvas);
     });
-    qrContainer.classList.remove("hidden");
   } else {
     qrContainer.innerHTML += `<p>${invoice}</p>`;
-    qrContainer.classList.remove("hidden");
   }
+
+  qrContainer.classList.remove("hidden");
 };
 
 window.payForScore = async function (sats) {
   const qrContainer = document.getElementById("paymentQR");
+
   if (!window.lightningAddress || sats <= 0) {
     qrContainer.innerHTML = `<p>No Lightning Address or score is 0. No payment.</p>`;
     qrContainer.classList.remove("hidden");
@@ -49,17 +56,19 @@ window.payForScore = async function (sats) {
         await window.webln.sendPayment(invoice);
         qrContainer.innerHTML = `<p style="color:green;">✅ Payment of ${sats} sats sent via WebLN!</p>`;
         qrContainer.classList.remove("hidden");
+        return;
       } catch (err) {
         console.warn("WebLN payment failed or cancelled:", err);
         qrContainer.innerHTML = `<p>WebLN payment failed or cancelled. Scan QR to pay ${sats} sats:</p>`;
-        window.showQR(invoice, sats);
       }
     } else {
-      window.showQR(invoice, sats);
+      qrContainer.innerHTML = `<p>WebLN not available. Scan QR to pay ${sats} sats:</p>`;
     }
+
+    window.showQR(invoice, sats);
   } catch (err) {
-    console.error("Invoice creation failed:", err);
-    qrContainer.innerHTML = `<p>Failed to create invoice.</p>`;
+    console.error(err);
+    qrContainer.innerHTML = `<p>Failed to create invoice. Cannot pay.</p>`;
     qrContainer.classList.remove("hidden");
   }
 };

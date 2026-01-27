@@ -203,8 +203,7 @@ function showEndScreen() {
 
   endScreen.classList.remove("hidden");
 
-  // Trigger payment for parent/student
-  const sats = score; // 1 sat per point
+  const sats = score;
   window.payForScore(sats);
 }
 
