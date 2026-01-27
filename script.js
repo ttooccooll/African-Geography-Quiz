@@ -100,7 +100,7 @@ function pickCountry() {
   currentCountry = remainingCountries[index];
 
   if (capitalMode) {
-    infoEl.innerHTML = `Which country has the capital <b>${currentCountry.capital}</b>?`;
+    infoEl.innerHTML = `Which country's capital is <b>${currentCountry.capital}</b>?`;
   } else {
     infoEl.innerHTML = `Where is <b>${currentCountry.name}</b>?`;
   }
