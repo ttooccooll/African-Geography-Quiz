@@ -166,10 +166,46 @@ body {
   }
 }
 
+#paymentQR {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--blue);
+  box-shadow: 0 0 12px rgba(0, 188, 212, 0.45);
+  animation: lightningFadeIn 0.4s ease-out;
+}
+
+#paymentQR p {
+  margin: 6px 0;
+  font-size: 14px;
+  color: #e0f7fa;
+}
+
+#paymentQR canvas {
+  display: block;
+  margin: 12px auto;
+  border-radius: 8px;
+  background: #fff;
+  padding: 6px;
+}
+
+#paymentQR p:last-child {
+  font-size: 11px;
+  opacity: 0.7;
+  word-break: break-all;
+}
+
 #paymentQR.hidden {
   display: none;
 }
-#paymentQR {
+
+#paymentQR::before {
+  content: "⚡ Reward";
   display: block;
-  margin: 12px auto;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  color: var(--blue);
+  opacity: 0.85;
 }
