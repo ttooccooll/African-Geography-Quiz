@@ -88,7 +88,6 @@ const tolerancePerCountry = {
 
 const tolerance = tolerancePerCountry[currentCountry.name] || 3.5;
 
-
 const scoreEl = document.getElementById("score");
 const messageEl = document.getElementById("message");
 const infoEl = document.getElementById("info");
