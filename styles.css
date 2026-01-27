@@ -170,5 +170,6 @@ body {
   display: none;
 }
 #paymentQR {
-  margin-top: 10px;
+  display: block;
+  margin: 12px auto;
 }
