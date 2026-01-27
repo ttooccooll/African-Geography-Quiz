@@ -1,9 +1,9 @@
 window.signInWithLightningAddress = function () {
   window.lightningInvoice = prompt(
-    "Enter a Lightning invoice (payment request) from the student to receive rewards:",
+    "Enter a Lightning address (payment request) from the student to receive rewards:",
   );
   if (!window.lightningInvoice) {
-    alert("You need a Lightning invoice to receive rewards!");
+    alert("You need a Lightning address to receive rewards!");
   } else {
     alert("Great! WebLN or QR code will be used to pay this invoice.");
   }
