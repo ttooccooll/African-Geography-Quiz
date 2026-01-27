@@ -385,7 +385,7 @@ body {
     transform: scale(0.5);
     transform-origin: bottom right;
   }
-  #map img {
+  #map {
     transform: scale(2);
   }
 }
