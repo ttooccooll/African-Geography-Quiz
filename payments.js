@@ -62,17 +62,11 @@ window.showQR = function (invoice, sats) {
 };
 
 window.payForScore = async function (sats) {
-  const qrContainer = document.getElementById("paymentQR");
-
-  if (!window.lightningInvoice) {
-    window.showLightningModal();
-  }
-
-  if (!window.lightningInvoice || sats <= 0) {
-    qrContainer.innerHTML = `<p>No payout.</p>`;
-    qrContainer.classList.remove("hidden");
+  if (!window.lightningEnabled || sats <= 0) {
     return;
   }
+
+  const qrContainer = document.getElementById("paymentQR");
 
   let invoice = window.lightningInvoice;
 
@@ -80,20 +74,16 @@ window.payForScore = async function (sats) {
     invoice = await getInvoiceFromLightningAddress(invoice, sats);
   }
 
-  window.currentBolt11 = invoice;
-
   try {
     if (window.webln) {
       await window.webln.enable();
       await window.webln.sendPayment(invoice);
 
-      qrContainer.innerHTML = `<p style="color:green;">✅ Paid ${sats} sats via WebLN</p>`;
+      qrContainer.innerHTML = `<p>✅ ${sats} sats sent</p>`;
       qrContainer.classList.remove("hidden");
       return;
     }
-  } catch (err) {
-    console.warn("WebLN failed:", err);
-  }
+  } catch {}
 
   window.showQR(invoice, sats);
 };
