@@ -78,10 +78,10 @@ let remainingCountries = [...countries];
 
 let currentCountry = null;
 const tolerancePerCountry = {
-  "Mozambique": 5,
+  "Mozambique": 6,
   "Chad": 6,
-  "Guinea‑Bissau": 6,
-  "Morocco": 4,
+  "Guinea‑Bissau": 4,
+  "Morocco": 5,
   "Rwanda": 2,
   "Burundi": 2,
 };
