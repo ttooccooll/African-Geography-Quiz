@@ -92,12 +92,10 @@ body {
   font-weight: bold;
 }
 
-/* Map filters */
 #map img {
   filter: brightness(3) contrast(1.4) saturate(2);
 }
 
-/* End screen */
 #endScreen {
   position: fixed;
   inset: 0;
@@ -386,5 +384,8 @@ body {
   .leaflet-control-zoom {
     transform: scale(0.5);
     transform-origin: bottom right;
+  }
+  #map img {
+    transform: scale(2);
   }
 }
