@@ -189,6 +189,38 @@ function hintPulse(lat, lng) {
   }, 60);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const scoreEl = document.getElementById("score");
+  const messageEl = document.getElementById("message");
+  const infoEl = document.getElementById("info");
+
+  // Automatically ask for student's Lightning invoice
+  window.signInWithLightningAddress();
+
+  // Start the game
+  pickCountry();
+
+  // Restart button
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    score = 0;
+    streak = 0;
+    mistakes = 0;
+    totalClicks = 0;
+    remainingCountries = [...countries];
+
+    scoreEl.textContent = "Score: 0 | Streak: 0";
+    messageEl.textContent = "Welcome!";
+    document.getElementById("endScreen").classList.add("hidden");
+    document.getElementById("paymentQR").classList.add("hidden");
+
+    // Ask for invoice again when restarting
+    window.signInWithLightningAddress();
+
+    pickCountry();
+  });
+});
+
+// Show end screen and trigger payment
 function showEndScreen() {
   const endScreen = document.getElementById("endScreen");
   const finalStats = document.getElementById("finalStats");
@@ -203,29 +235,6 @@ function showEndScreen() {
 
   endScreen.classList.remove("hidden");
 
-  const sats = score;
-  window.payForScore(sats);
+  // Automatically pay the earned sats
+  window.payForScore(score);
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const scoreEl = document.getElementById("score");
-  const messageEl = document.getElementById("message");
-  const infoEl = document.getElementById("info");
-
-  signInWithLightningAddress();
-  pickCountry();
-
-  document.getElementById("restartBtn").addEventListener("click", () => {
-    score = 0;
-    streak = 0;
-    mistakes = 0;
-    totalClicks = 0;
-    remainingCountries = [...countries];
-
-    scoreEl.textContent = "Score: 0 | Streak: 0";
-    messageEl.textContent = "Welcome!";
-    document.getElementById("endScreen").classList.add("hidden");
-
-    pickCountry();
-  });
-});
