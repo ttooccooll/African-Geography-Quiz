@@ -15,14 +15,16 @@ var africaBounds = [
   [-35.0, -18.0],
   [38.0, 52.0],
 ];
+map.fitBounds(africaBounds);
 
-const isMobile = window.matchMedia("(max-width: 768px)").matches;
+if (isMobile) {
+  map.setMinZoom(3);
+  map.setMaxZoom(6);
 
-map.fitBounds(africaBounds, {
-  paddingTopLeft: isMobile ? [20, 120] : [20, 20],
-  paddingBottomRight: isMobile ? [20, 20] : [20, 20],
-  maxZoom: isMobile ? 4 : 3,
-});
+  map.once("load", () => {
+    map.setZoom(map.getZoom() + 1);
+  });
+}
 
 var countries = [
   { name: "Algeria", lat: 28.0, lng: 2.0 },
@@ -227,12 +229,14 @@ async function getInvoiceFromLightningAddress(address, sats) {
   const [name, domain] = address.split("@");
   const lnurlpUrl = `https://${domain}/.well-known/lnurlp/${name}`;
 
-  const lnurlpRes = await fetch(lnurlpUrl).then(r => r.json());
+  const lnurlpRes = await fetch(lnurlpUrl).then((r) => r.json());
 
   const callback = lnurlpRes.callback;
   const msats = sats * 1000;
 
-  const invoiceRes = await fetch(`${callback}?amount=${msats}`).then(r => r.json());
+  const invoiceRes = await fetch(`${callback}?amount=${msats}`).then((r) =>
+    r.json(),
+  );
 
   return invoiceRes.pr;
 }
