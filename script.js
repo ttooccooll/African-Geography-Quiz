@@ -15,7 +15,14 @@ var africaBounds = [
   [-35.0, -18.0],
   [38.0, 52.0],
 ];
-map.fitBounds(africaBounds);
+
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+map.fitBounds(africaBounds, {
+  paddingTopLeft: isMobile ? [20, 120] : [20, 20],
+  paddingBottomRight: isMobile ? [20, 20] : [20, 20],
+  maxZoom: isMobile ? 4 : 3,
+});
 
 var countries = [
   { name: "Algeria", lat: 28.0, lng: 2.0 },
