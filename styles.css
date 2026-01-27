@@ -397,10 +397,4 @@ body {
     padding: 4px 5px;
     margin: 0;
   }
-  .leaflet-popup-close-button {
-    margin: 4px 5px;
-  }
-  #map {
-    transform: scale(2);
-  }
 }
