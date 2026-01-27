@@ -13,7 +13,7 @@ window.showQR = function (invoice, sats) {
   const qrContainer = document.getElementById("paymentQR");
 
   qrContainer.innerHTML = `
-    <p>Scan to send <strong>${sats} sats</strong></p>
+    <p>Scan to reward <strong>${sats} sats</strong></p>
     <canvas id="qrCanvas"></canvas>
     <p style="word-break: break-all; font-size: 12px;">${invoice}</p>
   `;
