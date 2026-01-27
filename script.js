@@ -85,6 +85,7 @@ const tolerancePerCountry = {
   "Egypt": 4,
   "Mali": 5,
   "Sudan": 4,
+  "Equatorial Guinea": 2,
   "Rwanda": 2,
   "Burundi": 2,
   "The Gambia": 2,
