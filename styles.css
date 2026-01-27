@@ -264,7 +264,7 @@ body {
 /* Lightning input */
 .modal-card input {
   width: 100%;
-  padding: 12px -12px 12px 12px;
+  padding: 1px 0 12px 12px;
   margin-top: 10px;
   border-radius: 10px;
   border: 2px solid var(--blue);
