@@ -210,35 +210,135 @@ body {
   opacity: 0.85;
 }
 
+/* Lightning modal overlay */
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
 
+/* Hidden state */
 .modal.hidden {
   display: none;
 }
 
+/* Modal card – matches end-card aesthetic */
 .modal-card {
   background: #111;
-  padding: 20px;
-  border-radius: 12px;
+  border-radius: 16px;
+  padding: 26px 28px;
   width: 90%;
-  max-width: 360px;
+  max-width: 380px;
   text-align: center;
+  color: white;
+
+  border: 2px solid var(--goldb);
+  box-shadow:
+    0 0 18px rgba(212, 158, 23, 0.6),
+    0 0 36px rgba(204, 0, 0, 0.45),
+    0 0 54px rgba(0, 153, 0, 0.35);
+
+  animation: lightningModalPulse 2s infinite ease-in-out;
 }
 
+/* Title */
+.modal-card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.6em;
+  color: var(--goldb);
+}
+
+/* Description text */
+.modal-card p {
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--sand);
+  margin-bottom: 14px;
+}
+
+/* Lightning input */
+.modal-card input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--blue);
+  background: #000;
+  color: white;
+  font-size: 15px;
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 188, 212, 0.45);
+}
+
+.modal-card input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Buttons */
 .modal-actions {
-  margin-top: 12px;
+  margin-top: 16px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 
 .modal-actions button {
   flex: 1;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+/* Enable rewards button */
+#enableLightningBtn {
+  background: var(--green);
+  border: 2px solid var(--greenb);
+  color: white;
+  box-shadow: 0 0 14px rgba(31, 122, 79, 0.7);
+}
+
+#enableLightningBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 22px rgba(31, 122, 79, 0.9);
+}
+
+/* Skip button */
+#skipLightningBtn {
+  background: var(--red);
+  border: 2px solid var(--redb);
+  color: white;
+  box-shadow: 0 0 14px rgba(158, 42, 44, 0.6);
+}
+
+#skipLightningBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 22px rgba(158, 42, 44, 0.85);
+}
+
+/* Pulse animation */
+@keyframes lightningModalPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 15px rgba(204, 0, 0, 0.6),
+      0 0 30px rgba(255, 204, 0, 0.5),
+      0 0 45px rgba(0, 153, 0, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(204, 0, 0, 0.8),
+      0 0 44px rgba(255, 204, 0, 0.7),
+      0 0 65px rgba(0, 153, 0, 0.6);
+  }
 }
