@@ -399,6 +399,7 @@ body {
     width: fit-content;
     font-size: 12px;
     padding: 4px 5px;
+    margin: 0;
   }
   #map {
     transform: scale(2);
