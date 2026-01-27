@@ -77,7 +77,17 @@ let totalClicks = 0;
 let remainingCountries = [...countries];
 
 let currentCountry = null;
-const tolerance = 3.5;
+const tolerancePerCountry = {
+  "Mozambique": 5,
+  "Chad": 6,
+  "Guinea‑Bissau": 6,
+  "Morocco": 4,
+  "Rwanda": 2,
+  "Burundi": 2,
+};
+
+const tolerance = tolerancePerCountry[currentCountry.name] || 3.5;
+
 
 const scoreEl = document.getElementById("score");
 const messageEl = document.getElementById("message");
