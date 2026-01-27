@@ -11,7 +11,9 @@
   --blueb: #00acc1;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -223,6 +225,7 @@ body {
   align-items: center;
   justify-content: center;
   z-index: 9999;
+  padding: 12px;
 }
 
 /* Hidden state */
@@ -234,7 +237,7 @@ body {
 .modal-card {
   background: #111;
   border-radius: 16px;
-  padding: 26px 28px;
+  padding: 20px 16px;
   width: 90%;
   max-width: 380px;
   text-align: center;
@@ -289,6 +292,7 @@ body {
   margin-top: 16px;
   display: flex;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .modal-actions button {
@@ -345,5 +349,38 @@ body {
       0 0 22px rgba(204, 0, 0, 0.8),
       0 0 44px rgba(255, 204, 0, 0.7),
       0 0 65px rgba(0, 153, 0, 0.6);
+  }
+}
+
+@media (max-width: 500px) {
+  #info {
+    top: 50%;
+    font-size: 18px;
+    padding: 8px 14px;
+  }
+
+  #score {
+    top: 75%;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  #message {
+    top: 60%;
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .modal-card {
+    padding: 16px 12px;
+  }
+
+  .modal-card input {
+    font-size: 14px;
+  }
+
+  .modal-actions button {
+    font-size: 13px;
+    padding: 8px 10px;
   }
 }
