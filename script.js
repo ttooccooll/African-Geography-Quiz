@@ -88,6 +88,7 @@ const tolerancePerCountry = {
   "Burundi": 2,
   "The Gambia": 2,
   "Swaziland (Eswatini)": 2,
+  "Djibouti": 2,
 };
 
 const scoreEl = document.getElementById("score");
