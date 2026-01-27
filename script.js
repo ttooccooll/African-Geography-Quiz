@@ -224,6 +224,36 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+const faqBtn = document.getElementById("faqBtn");
+const paymentsBtn = document.getElementById("paymentsBtn");
+const capitalModeBtn = document.getElementById("capitalModeBtn");
+
+const faqPopup = document.getElementById("faqPopup");
+const paymentsPopup = document.getElementById("paymentsPopup");
+
+document.querySelectorAll(".closePopup").forEach(btn => {
+  btn.addEventListener("click", e => {
+    e.target.closest(".popup").classList.add("hidden");
+  });
+});
+
+faqBtn.addEventListener("click", () => {
+  faqPopup.classList.toggle("hidden");
+  paymentsPopup.classList.add("hidden");
+});
+
+paymentsBtn.addEventListener("click", () => {
+  paymentsPopup.classList.toggle("hidden");
+  faqPopup.classList.add("hidden");
+});
+
+let capitalMode = false;
+capitalModeBtn.addEventListener("click", () => {
+  capitalMode = !capitalMode;
+  capitalModeBtn.textContent = capitalMode ? "🏛️ Capital Mode ON" : "🏛️ Capital Mode";
+});
+
+
 async function getInvoiceFromLightningAddress(address, sats) {
   const [name, domain] = address.split("@");
   const lnurlpUrl = `https://${domain}/.well-known/lnurlp/${name}`;

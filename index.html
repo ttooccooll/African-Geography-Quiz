@@ -16,7 +16,8 @@
       <div class="modal-card">
         <h2>⚡ Earn sats? ⚡</h2>
         <p>
-          If you want, you can earn sats (provided by your parent or teacher) for correct answers. This is optional.
+          If you want, you can earn sats (provided by your parent or teacher)
+          for correct answers. This is optional.
         </p>
         <input
           id="lightningInput"
@@ -38,6 +39,28 @@
         <button id="restartBtn">Play Again</button>
       </div>
     </div>
+    <div id="quickPanel">
+      <button class="panel-btn" id="faqBtn">❓ FAQs</button>
+      <button class="panel-btn" id="paymentsBtn">💰 Payments</button>
+      <button class="panel-btn" id="capitalModeBtn">🏛️ Capital Mode</button>
+    </div>
+
+    <div id="faqPopup" class="popup hidden">
+      <h3>FAQs</h3>
+      <ul>
+        <li>Click on the map where you think the country is.</li>
+        <li>After 3 mistakes, hints appear.</li>
+        <li>Score points for correct guesses.</li>
+      </ul>
+      <button class="closePopup">Close</button>
+    </div>
+
+    <div id="paymentsPopup" class="popup hidden">
+      <h3>Payments</h3>
+      <p>You can earn sats via Lightning network for correct answers.</p>
+      <button class="closePopup">Close</button>
+    </div>
+
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
     <script src="payments.js"></script>
