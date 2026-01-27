@@ -91,7 +91,7 @@ const tolerancePerCountry = {
   "Rwanda": 2,
   "Burundi": 2,
   "The Gambia": 2,
-  "Swaziland (Eswatini)": 2,
+  "Swaziland (Eswatini)": 1.5,
   "Djibouti": 2,
 };
 
