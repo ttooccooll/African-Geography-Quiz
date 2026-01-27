@@ -385,6 +385,10 @@ body {
     transform: scale(0.5);
     transform-origin: bottom right;
   }
+  .leaflet-popup-content {
+    font-size: 12px;
+    padding: 4px 5px;
+  }
   #map {
     transform: scale(2);
   }
