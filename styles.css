@@ -37,7 +37,7 @@ body {
 
 #info {
   position: absolute;
-  top: 65%;
+  top: 80%;
   left: 22%;
   transform: translateX(-50%);
   background: var(--red);
@@ -53,7 +53,7 @@ body {
 /* Score box */
 #score {
   position: absolute;
-  top: 85%;
+  top: 90%;
   left: 22%;
   transform: translateX(-50%);
   background: var(--green);
@@ -68,7 +68,7 @@ body {
 
 #message {
   position: absolute;
-  top: 75%;
+  top: 85%;
   left: 22%;
   transform: translateX(-50%);
   background: var(--gold);
