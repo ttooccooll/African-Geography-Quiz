@@ -11,18 +11,35 @@ window.signInWithLightningAddress = function () {
 
 window.showQR = function (invoice, sats) {
   const qrContainer = document.getElementById("paymentQR");
+
   qrContainer.innerHTML = `
     <p>Scan to receive <strong>${sats} sats</strong></p>
     <canvas id="qrCanvas"></canvas>
+    <p style="word-break: break-all; font-size: 12px;">${invoice}</p>
   `;
+
+  qrContainer.classList.remove("hidden");
 
   const canvas = document.getElementById("qrCanvas");
 
-  QRCode.toCanvas(canvas, invoice, { width: 220 }, (err) => {
-    if (err) console.error("QR error:", err);
-  });
+  if (!canvas) {
+    console.error("QR canvas not found");
+    return;
+  }
 
-  qrContainer.classList.remove("hidden");
+  if (!window.QRCode) {
+    console.error("QRCode library not loaded");
+    return;
+  }
+
+  QRCode.toCanvas(
+    canvas,
+    invoice,
+    { width: 220, margin: 1 },
+    (err) => {
+      if (err) console.error("QR render error:", err);
+    }
+  );
 };
 
 window.payForScore = async function (sats) {
