@@ -60,7 +60,6 @@ body {
   box-shadow: 0 0 15px rgba(31, 122, 79, 0.7);
 }
 
-/* Message box */
 #message {
   position: absolute;
   top: 70%;
@@ -77,7 +76,6 @@ body {
   box-shadow: 0 0 15px rgba(212, 158, 23, 0.5);
 }
 
-/* Marker feedback */
 .correct-marker {
   color: var(--green);
   font-weight: bold;
@@ -354,17 +352,17 @@ body {
 @media (max-width: 500px) {
   #info {
     font-size: 18px;
-    padding: 6px 14px;
+    padding: 6px 10px;
   }
 
   #score {
     font-size: 14px;
-    padding: 6px 12px;
+    padding: 6px 10px;
   }
 
   #message {
     font-size: 14px;
-    padding: 6px 12px;
+    padding: 6px 10px;
   }
 
   .modal-card {
