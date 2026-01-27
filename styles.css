@@ -383,18 +383,18 @@ body {
   }
   .leaflet-popup {
     width: fit-content;
-    font-size: 12px;
+    font-size: 8px;
     padding: 0;
   }
   .leaflet-popup-wrapper {
     width: fit-content;
-    font-size: 12px;
+    font-size: 8px;
     padding: 0;
   }
   .leaflet-popup-content {
     width: fit-content;
-    font-size: 12px;
-    padding: 4px 5px;
+    font-size: 8px;
+    padding: 4px 15px 4px 5px;
     margin: 0;
   }
   #map {
