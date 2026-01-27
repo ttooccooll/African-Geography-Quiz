@@ -74,7 +74,6 @@ body {
   border: 2px solid var(--goldb);
   z-index: 1000;
   text-align: center;
-  min-width: 200px;
   box-shadow: 0 0 15px rgba(212, 158, 23, 0.5);
 }
 
