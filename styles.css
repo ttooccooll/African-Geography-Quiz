@@ -41,7 +41,7 @@ body {
   left: 22%;
   transform: translateX(-50%);
   background: var(--red);
-  padding: 12px 24px;
+  padding: 12px 18px;
   border-radius: 12px;
   font-size: 22px;
   color: white;
@@ -72,7 +72,7 @@ body {
   left: 22%;
   transform: translateX(-50%);
   background: var(--gold);
-  padding: 12px 20px;
+  padding: 12px 18px;
   border-radius: 12px;
   font-size: 18px;
   color: #3b2f1c;
@@ -358,17 +358,17 @@ body {
 @media (max-width: 500px) {
   #info {
     font-size: 18px;
-    padding: 6px 10px;
+    padding: 6px 8px;
   }
 
   #score {
     font-size: 14px;
-    padding: 6px 10px;
+    padding: 6px 8px;
   }
 
   #message {
     font-size: 14px;
-    padding: 6px 10px;
+    padding: 6px 8px;
   }
 
   .modal-card {
