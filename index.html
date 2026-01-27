@@ -12,6 +12,23 @@
     <div id="score">Score: 0 | Streak: 0</div>
     <div id="message">Welcome!</div>
     <div id="map"></div>
+    <div id="lightningModal" class="modal hidden">
+      <div class="modal-card">
+        <h2>⚡ Earn sats?</h2>
+        <p>
+          If you want, you can earn sats (provided by your parent or teacher) for correct answers. This is optional.
+        </p>
+        <input
+          id="lightningInput"
+          placeholder="Lightning address (optional)"
+          autocomplete="off"
+        />
+        <div class="modal-actions">
+          <button id="enableLightningBtn">Enable rewards</button>
+          <button id="skipLightningBtn">Just play</button>
+        </div>
+      </div>
+    </div>
     <div id="endScreen" class="hidden">
       <div class="end-card">
         <h1>🎉 Game Complete! 🎉</h1>

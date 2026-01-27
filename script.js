@@ -194,13 +194,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const messageEl = document.getElementById("message");
   const infoEl = document.getElementById("info");
 
-  // Automatically ask for student's Lightning invoice
-  window.signInWithLightningAddress();
+  window.showLightningModal();
 
-  // Start the game
   pickCountry();
 
-  // Restart button
   document.getElementById("restartBtn").addEventListener("click", () => {
     score = 0;
     streak = 0;
@@ -213,8 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("endScreen").classList.add("hidden");
     document.getElementById("paymentQR").classList.add("hidden");
 
-    // Ask for invoice again when restarting
-    window.signInWithLightningAddress();
+    window.showLightningModal();
 
     pickCountry();
   });

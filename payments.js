@@ -1,12 +1,31 @@
-window.signInWithLightningAddress = function () {
-  window.lightningInvoice = prompt(
-    "Enter a Lightning address (payment request) from the student to receive rewards:",
-  );
-  if (!window.lightningInvoice) {
-    alert("You need a Lightning address to receive rewards!");
-  } else {
-    alert("Great! WebLN or QR code will be used to pay this invoice.");
+window.lightningEnabled = false;
+window.lightningInvoice = null;
+
+window.showLightningModal = function () {
+  document.getElementById("lightningModal").classList.remove("hidden");
+};
+
+document.getElementById("enableLightningBtn").onclick = () => {
+  const input = document
+    .getElementById("lightningInput")
+    .value.trim();
+
+  if (!input) {
+    alert("Please enter a Lightning address or click Just play.");
+    return;
   }
+
+  window.lightningInvoice = input;
+  window.lightningEnabled = true;
+
+  document.getElementById("lightningModal").classList.add("hidden");
+};
+
+document.getElementById("skipLightningBtn").onclick = () => {
+  window.lightningEnabled = false;
+  window.lightningInvoice = null;
+
+  document.getElementById("lightningModal").classList.add("hidden");
 };
 
 window.showQR = function (invoice, sats) {
@@ -46,7 +65,7 @@ window.payForScore = async function (sats) {
   const qrContainer = document.getElementById("paymentQR");
 
   if (!window.lightningInvoice) {
-    window.signInWithLightningAddress();
+    window.showLightningModal();
   }
 
   if (!window.lightningInvoice || sats <= 0) {
