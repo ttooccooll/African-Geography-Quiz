@@ -28,32 +28,33 @@ window.showQR = function (invoice, sats) {
 window.payForScore = async function (sats) {
   const qrContainer = document.getElementById("paymentQR");
 
-  if (!window.lightningInvoice || sats <= 0) {
-    qrContainer.innerHTML = `<p>No Lightning invoice or score is 0. Cannot pay.</p>`;
+  if (!window.lightningInvoice) {
+    window.signInWithLightningAddress();
+  }
+
+  if (!window.lightningInvoice) {
+    qrContainer.innerHTML = `<p>No Lightning invoice entered. Cannot pay ${sats} sats.</p>`;
+    qrContainer.classList.remove("hidden");
+    return;
+  }
+
+  if (sats <= 0) {
+    qrContainer.innerHTML = `<p>Score is 0. No payment due.</p>`;
     qrContainer.classList.remove("hidden");
     return;
   }
 
   try {
     if (window.webln) {
-      try {
-        await window.webln.enable();
-        await window.webln.sendPayment(window.lightningInvoice);
-        qrContainer.innerHTML = `<p style="color:green;">✅ Payment of ${sats} sats sent via WebLN!</p>`;
-        qrContainer.classList.remove("hidden");
-        return;
-      } catch (err) {
-        console.warn("WebLN payment failed or cancelled:", err);
-        qrContainer.innerHTML = `<p>WebLN payment failed or cancelled. Scan QR to pay ${sats} sats:</p>`;
-      }
-    } else {
-      qrContainer.innerHTML = `<p>WebLN not available. Scan QR to pay ${sats} sats:</p>`;
+      await window.webln.enable();
+      await window.webln.sendPayment(window.lightningInvoice);
+      qrContainer.innerHTML = `<p style="color:green;">✅ Payment of ${sats} sats sent via WebLN!</p>`;
+      qrContainer.classList.remove("hidden");
+      return;
     }
-
-    window.showQR(window.lightningInvoice, sats);
   } catch (err) {
-    console.error(err);
-    qrContainer.innerHTML = `<p>Payment failed. Scan QR to pay ${sats} sats:</p>`;
-    window.showQR(window.lightningInvoice, sats);
+    console.warn("WebLN payment failed or cancelled:", err);
   }
+
+  window.showQR(window.lightningInvoice, sats);
 };
