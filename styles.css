@@ -398,10 +398,7 @@ body {
     margin: 0;
   }
   .leaflet-popup-close-button {
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    font-size: 18px;
+    margin: 10px
   }
   #map {
     transform: scale(2);
