@@ -220,7 +220,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Show end screen and trigger payment
+async function getInvoiceFromLightningAddress(address, sats) {
+  const [name, domain] = address.split("@");
+  const lnurlpUrl = `https://${domain}/.well-known/lnurlp/${name}`;
+
+  const lnurlpRes = await fetch(lnurlpUrl).then(r => r.json());
+
+  const callback = lnurlpRes.callback;
+  const msats = sats * 1000;
+
+  const invoiceRes = await fetch(`${callback}?amount=${msats}`).then(r => r.json());
+
+  return invoiceRes.pr;
+}
+
 function showEndScreen() {
   const endScreen = document.getElementById("endScreen");
   const finalStats = document.getElementById("finalStats");

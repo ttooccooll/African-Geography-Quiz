@@ -50,7 +50,14 @@ window.payForScore = async function (sats) {
   try {
     if (window.webln) {
       await window.webln.enable();
-      await window.webln.sendPayment(window.lightningInvoice);
+      let invoice = window.lightningInvoice;
+
+      if (invoice.includes("@")) {
+        invoice = await getInvoiceFromLightningAddress(invoice, sats);
+      }
+
+      await window.webln.sendPayment(invoice);
+
       qrContainer.innerHTML = `<p style="color:green;">✅ Payment of ${sats} sats sent via WebLN!</p>`;
       qrContainer.classList.remove("hidden");
       return;
