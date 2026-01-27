@@ -385,10 +385,15 @@ body {
     transform: scale(0.5);
     transform-origin: bottom right;
   }
-    .leaflet-popup-wrapper {
+  .leaflet-popup {
     width: fit-content;
     font-size: 12px;
-    padding: 4px 5px;
+    padding: 0;
+  }
+  .leaflet-popup-wrapper {
+    width: fit-content;
+    font-size: 12px;
+    padding: 0;
   }
   .leaflet-popup-content {
     width: fit-content;
