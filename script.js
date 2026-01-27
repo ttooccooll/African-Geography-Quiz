@@ -86,6 +86,7 @@ const tolerancePerCountry = {
   "Mali": 5,
   "Rwanda": 2,
   "Burundi": 2,
+  "The Gambia": 2,
 };
 
 const scoreEl = document.getElementById("score");
