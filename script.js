@@ -99,7 +99,12 @@ function pickCountry() {
   const index = Math.floor(Math.random() * remainingCountries.length);
   currentCountry = remainingCountries[index];
 
-  infoEl.innerHTML = `Where is <b>${currentCountry.name}</b>?`;
+  if (capitalMode) {
+    infoEl.innerHTML = `Which country has the capital <b>${currentCountry.capital}</b>?`;
+  } else {
+    infoEl.innerHTML = `Where is <b>${currentCountry.name}</b>?`;
+  }
+
   mistakes = 0;
 
   if (messageEl.textContent === "❌ Wrong! Try again.") {
@@ -272,7 +277,7 @@ function showEndScreen() {
   const endScreen = document.getElementById("endScreen");
   const finalStats = document.getElementById("finalStats");
 
-  const accuracy = totalClicks > 0 ? Math.round((54 / totalClicks) * 100) : 0;
+  const accuracy = totalClicks > 0 ? Math.round((score / totalClicks) * 100) : 0;
 
   finalStats.innerHTML = `
     <strong>Final Score:</strong> ${score}<br>
