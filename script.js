@@ -80,7 +80,7 @@ let currentCountry = null;
 const tolerancePerCountry = {
   "Mozambique": 6,
   "Chad": 6,
-  "Guinea‑Bissau": 4,
+  "Guinea‑Bissau": 2,
   "Morocco": 5,
   "Egypt": 4,
   "Mali": 5,
