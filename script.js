@@ -116,7 +116,7 @@ function pickCountry() {
 
   mistakes = 0;
 
-  if (messageEl.textContent === "❌ Wrong! Try again.") {
+  if (messageEl.textContent === "Nope. Try again.") {
     messageEl.textContent = "Good job!";
   }
 }

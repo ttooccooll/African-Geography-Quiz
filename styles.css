@@ -1,13 +1,13 @@
 :root {
   --sand: rgba(245, 232, 200, 0.74);
-  --gold: #d49e17b1;
+  --gold: #d49e1794;
   --green: #1f7a4fc1;
   --red: #9e2a2cae;
   --goldb: #d4a017;
   --greenb: #1c8a56;
   --redb: #9e2a2b;
   --charcoal: #1b1b1b;
-  --blue: #00bcd4;
+  --blue: #00bbd4a5;
   --blueb: #00acc1;
 }
 
@@ -72,7 +72,7 @@ body {
   padding: 10px 18px;
   border-radius: 12px;
   font-size: 18px;
-  color: #3b2f1c;
+  color: black;
   border: 2px solid var(--goldb);
   z-index: 1000;
   text-align: center;
