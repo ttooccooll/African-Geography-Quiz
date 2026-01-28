@@ -299,27 +299,3 @@ function showEndScreen() {
     window.payForScore(score);
   };
 }
-
-const TIP_ADDRESS = "fairrobin2@primal.net";
-const TIP_SATS = confirm("Tip 100 sats?") ? 100 : 0;
-if (!TIP_SATS) return;
-
-document.getElementById("tipBtn").addEventListener("click", async () => {
-  let invoice;
-
-  try {
-    invoice = await getInvoiceFromLightningAddress(TIP_ADDRESS, TIP_SATS);
-
-    if (window.webln) {
-      await window.webln.enable();
-      await window.webln.sendPayment(invoice);
-
-      alert(`✅ Thanks for tipping ${TIP_SATS} sats!`);
-      return;
-    }
-  } catch (err) {
-    console.warn("WebLN failed, falling back to QR", err);
-  }
-
-  window.showQR(invoice, TIP_SATS);
-});
