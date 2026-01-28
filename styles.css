@@ -469,10 +469,3 @@ body {
     margin: 0;
   }
   .leaflet-popup-close-button {
-    font-size: 8px;
-    padding: 1px 0px 1px 0px;
-  }
-  #map {
-    transform: scale(2);
-  }
-}
