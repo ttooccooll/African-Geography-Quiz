@@ -20,15 +20,20 @@ map.fitBounds(africaBounds);
 var countries = [
   { name: "Algeria", lat: 28.0, lng: 2.0, capital: "Algiers" },
   { name: "Angola", lat: -11.2, lng: 17.9, capital: "Luanda" },
-  { name: "Benin", lat: 6.3, lng: 2.3, capital: "Porto-Novo" },
+  { name: "Benin", lat: 8.3, lng: 2.3, capital: "Porto-Novo" },
   { name: "Botswana", lat: -22.3, lng: 24.7, capital: "Gaborone" },
   { name: "Burkina Faso", lat: 12.2, lng: -1.4, capital: "Ouagadougou" },
   { name: "Burundi", lat: -3.5, lng: 30.0, capital: "Gitega" },
   { name: "Cameroon", lat: 3.9, lng: 11.5, capital: "Yaoundé" },
   { name: "Central African Republic", lat: 7.0, lng: 20.0, capital: "Bangui" },
-  { name: "Chad", lat: 12.1, lng: 16.0, capital: "N'Djamena" },
+  { name: "Chad", lat: 14.1, lng: 17.0, capital: "N'Djamena" },
   { name: "Côte d'Ivoire", lat: 7.5, lng: -5.5, capital: "Yamoussoukro" },
-  { name: "Democratic Republic of the Congo (DRC)", lat: -2.5, lng: 23.7, capital: "Kinshasa" },
+  {
+    name: "Democratic Republic of the Congo (DRC)",
+    lat: -2.5,
+    lng: 23.7,
+    capital: "Kinshasa",
+  },
   { name: "Djibouti", lat: 11.6, lng: 43.1, capital: "Djibouti" },
   { name: "Egypt", lat: 26.8, lng: 30.8, capital: "Cairo" },
   { name: "Equatorial Guinea", lat: 1.6, lng: 10.5, capital: "Malabo" },
@@ -52,7 +57,12 @@ var countries = [
   { name: "Namibia", lat: -22.0, lng: 17.1, capital: "Windhoek" },
   { name: "Niger", lat: 17.6, lng: 8.1, capital: "Niamey" },
   { name: "Nigeria", lat: 9.1, lng: 7.5, capital: "Abuja" },
-  { name: "Republic of the Congo", lat: -0.2, lng: 15.8, capital: "Brazzaville" },
+  {
+    name: "Republic of the Congo",
+    lat: -0.2,
+    lng: 15.8,
+    capital: "Brazzaville",
+  },
   { name: "Rwanda", lat: -1.9, lng: 29.9, capital: "Kigali" },
   { name: "Senegal", lat: 14.5, lng: -14.4, capital: "Dakar" },
   { name: "Sierra Leone", lat: 8.6, lng: -11.8, capital: "Freetown" },
@@ -78,21 +88,21 @@ let remainingCountries = [...countries];
 
 let currentCountry = null;
 const tolerancePerCountry = {
-  "Mozambique": 6,
-  "Chad": 6,
+  Mozambique: 6,
+  Chad: 6,
   "Guinea‑Bissau": 2,
-  "Morocco": 5,
-  "Egypt": 4,
-  "Mali": 5,
-  "Sudan": 4,
-  "Mauritania": 4,
+  Morocco: 5,
+  Egypt: 4,
+  Mali: 5,
+  Sudan: 4,
+  Mauritania: 4,
   "Sierra Leone": 3,
   "Equatorial Guinea": 2,
-  "Rwanda": 2,
-  "Burundi": 2,
+  Rwanda: 2,
+  Burundi: 2,
   "The Gambia": 2,
   "Swaziland (Eswatini)": 1.5,
-  "Djibouti": 2,
+  Djibouti: 2,
 };
 
 const scoreEl = document.getElementById("score");
@@ -185,6 +195,61 @@ map.on("click", function (e) {
   }
 });
 
+const hoverGlow = L.circle([0, 0], {
+  radius: 180000,
+  color: "#ccc",
+  weight: 1,
+  fillColor: "#ccc",
+  fillOpacity: 0,
+  opacity: 0,
+  interactive: false,
+}).addTo(map);
+
+map.on("mousemove", function (e) {
+  let nearest = null;
+  let nearestDist = Infinity;
+
+  for (const country of countries) {
+    const dx = e.latlng.lat - country.lat;
+    const dy = e.latlng.lng - country.lng;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < nearestDist) {
+      nearestDist = dist;
+      nearest = country;
+    }
+  }
+
+  const maxHoverDist = 6;
+
+  if (nearest && nearestDist < maxHoverDist) {
+    const intensity = 1 - nearestDist / maxHoverDist;
+    hoverGlow.setRadius(glowSize[nearest.name] || 180000);
+    hoverGlow.setLatLng([nearest.lat, nearest.lng]);
+    hoverGlow.setStyle({
+      opacity: intensity * 0.4,
+      fillOpacity: intensity * 0.4,
+    });
+  } else {
+    hoverGlow.setStyle({
+      opacity: 0,
+      fillOpacity: 0,
+    });
+  }
+});
+
+const glowSize = {
+  Algeria: 280000,
+  DRC: 260000,
+  Sudan: 240000,
+  Libya: 240000,
+  Chad: 220000,
+  Nigeria: 220000,
+  "The Gambia": 90000,
+  Rwanda: 100000,
+  Burundi: 100000,
+};
+
 function hintPulse(lat, lng) {
   const pulse = L.circle([lat, lng], {
     radius: 100000,
@@ -245,8 +310,8 @@ const capitalModeBtn = document.getElementById("capitalModeBtn");
 const faqPopup = document.getElementById("faqPopup");
 const paymentsPopup = document.getElementById("paymentsPopup");
 
-document.querySelectorAll(".closePopup").forEach(btn => {
-  btn.addEventListener("click", e => {
+document.querySelectorAll(".closePopup").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
     e.target.closest(".popup").classList.add("hidden");
   });
 });
@@ -263,20 +328,23 @@ paymentsBtn.addEventListener("click", () => {
 
 capitalModeBtn.addEventListener("click", () => {
   capitalMode = !capitalMode;
-  capitalModeBtn.textContent = capitalMode ? "🏛️ Capital Mode ON" : "🏛️ Capital Mode";
+  capitalModeBtn.textContent = capitalMode
+    ? "🏛️ Capital Mode ON"
+    : "🏛️ Capital Mode";
 });
-
 
 async function getInvoiceFromLightningAddress(address, sats) {
   const [name, domain] = address.split("@");
   const lnurlpUrl = `https://${domain}/.well-known/lnurlp/${name}`;
 
-  const lnurlpRes = await fetch(lnurlpUrl).then(r => r.json());
+  const lnurlpRes = await fetch(lnurlpUrl).then((r) => r.json());
 
   const callback = lnurlpRes.callback;
   const msats = sats * 1000;
 
-  const invoiceRes = await fetch(`${callback}?amount=${msats}`).then(r => r.json());
+  const invoiceRes = await fetch(`${callback}?amount=${msats}`).then((r) =>
+    r.json(),
+  );
 
   return invoiceRes.pr;
 }
@@ -285,7 +353,8 @@ function showEndScreen() {
   const endScreen = document.getElementById("endScreen");
   const finalStats = document.getElementById("finalStats");
 
-  const accuracy = totalClicks > 0 ? Math.round((score / totalClicks) * 100) : 0;
+  const accuracy =
+    totalClicks > 0 ? Math.round((score / totalClicks) * 100) : 0;
 
   finalStats.innerHTML = `
     <strong>Final Score:</strong> ${score}<br>
