@@ -73,7 +73,7 @@ let score = 0;
 let streak = 0;
 let mistakes = 0;
 let totalClicks = 0;
-
+let capitalMode = false;
 let remainingCountries = [...countries];
 
 let currentCountry = null;
@@ -261,7 +261,6 @@ paymentsBtn.addEventListener("click", () => {
   faqPopup.classList.add("hidden");
 });
 
-let capitalMode = false;
 capitalModeBtn.addEventListener("click", () => {
   capitalMode = !capitalMode;
   capitalModeBtn.textContent = capitalMode ? "🏛️ Capital Mode ON" : "🏛️ Capital Mode";
