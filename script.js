@@ -27,7 +27,7 @@ var countries = [
   { name: "Cameroon", lat: 3.9, lng: 11.5, capital: "Yaoundé" },
   { name: "Central African Republic", lat: 7.0, lng: 20.0, capital: "Bangui" },
   { name: "Chad", lat: 14.1, lng: 17.0, capital: "N'Djamena" },
-  { name: "Côte d'Ivoire", lat: 7.5, lng: -5.5, capital: "Yamoussoukro" },
+  { name: "Côte d'Ivoire (Ivory Coast)", lat: 7.5, lng: -5.5, capital: "Yamoussoukro" },
   {
     name: "Democratic Republic of the Congo (DRC)",
     lat: -2.5,
