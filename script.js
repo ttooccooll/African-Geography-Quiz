@@ -1,15 +1,19 @@
 var map = L.map("map", {
   zoomControl: false,
+  minZoom: 2,
+  maxZoom: 7,
 });
 
-L.tileLayer(
-  "https://{s}.basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}{r}.png",
-  {
-    subdomains: "abcd",
-    maxZoom: 19,
-    attribution: "&copy; OpenStreetMap &copy; CARTO",
+L.geoJSON(borders, {
+  interactive: false,
+  attribution: "Made with Natural Earth",
+  style: {
+    color: "#8c8c8c",
+    weight: 0.8,
+    fillColor: "#3a3a3a",
+    fillOpacity: 1,
   },
-).addTo(map);
+}).addTo(map);
 
 var africaBounds = [
   [-35.0, -18.0],
